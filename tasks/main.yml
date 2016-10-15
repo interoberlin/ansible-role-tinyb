@@ -1,0 +1,11 @@
+---
+# Variable setup.
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Include architecture-specific variables.
+  include_vars: "{{ ansible_architecture }}.yml"
+
+# Setup/install tasks.
+- include: install-Raspbian.yml
+  when: ansible_os_family == 'Debian' and ansible_architecture == 'armv7l'
