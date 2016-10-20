@@ -20,7 +20,7 @@
   stat: path="{{ ansible_env.HOME }}/tinyb/.git"
   register: tinyb_git_repo
   
-- Set tiny_home
+- name: Set tiny_home
   set_fact: tiny_home="{{ ansible_env.HOME }}/tinyb"
 
 - name: Clone tinyb into home directory
@@ -28,3 +28,5 @@
        dest={{ tiny_home }}
        version={{ tinyb_sha1 }}
   when: not tinyb_git_repo.stat.exists
+  
+- file: path={{ tiny_home }}/build state=directory mode=755
