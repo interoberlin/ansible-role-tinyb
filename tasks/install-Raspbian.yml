@@ -20,32 +20,32 @@
   stat: path="{{ ansible_env.HOME }}/tinyb/.git"
   register: tinyb_git_repo
   
-- name: Set tiny_home
-  set_fact: tiny_home="{{ ansible_env.HOME }}/tinyb"
+- name: Set tinyb_home
+  set_fact: tinyb_home="{{ ansible_env.HOME }}/tinyb"
 
 - name: Clone tinyb into home directory
   git: repo=https://github.com/intel-iot-devkit/tinyb.git
-       dest={{ tiny_home }}
+       dest={{ tinyb_home }}
        version={{ tinyb_sha1 }}
   when: not tinyb_git_repo.stat.exists
   
 - name: Create build dir
-  file: path={{ tiny_home }}/build state=directory mode=755
+  file: path={{ tinyb_home }}/build state=directory mode=755
 
 - name: Compile tinyb
   shell: "cmake .. -DBUILDJAVA=ON -DCMAKE_BUILD_TYPE=DEBUG -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++"
   args:
-    chdir: "{{ tiny_home }}/build"
+    chdir: "{{ tinyb_home }}/build"
 
 - name: Patch CMakeLists
-  lineinfile: dest={{ tiny_home }}/CMakeLists.txt regexp="{{ cmake_cxx_flags | regex_escape() }}" line="{{ cmake_cxx_flags }}" insertbefore="^set.*" state=present
+  lineinfile: dest={{ tinyb_home }}/CMakeLists.txt regexp="{{ cmake_cxx_flags | regex_escape() }}" line="{{ cmake_cxx_flags }}" insertbefore="^set.*" state=present
   
 - name: Make tinyb
   shell: "make"
   args:
-    chdir: "{{ tiny_home }}/build"
+    chdir: "{{ tinyb_home }}/build"
     
 - name: Make install tinyb
   shell: "make install"
   args:
-    chdir: "{{ tiny_home }}/build"
+    chdir: "{{ tinyb_home }}/build"
