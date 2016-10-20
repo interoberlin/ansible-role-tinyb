@@ -7,3 +7,5 @@ packages:
 - cmake
 
 tinyb_sha1: 'd9c777bc576b5365c2064d55fe872f272faa92e8'
+
+cmake_cxx_flags: 'set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")'
