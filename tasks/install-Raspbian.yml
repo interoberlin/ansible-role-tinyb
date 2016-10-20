@@ -1,6 +1,6 @@
 ---
 #
-# Install packages
+# Install packages and set environment
 #
 
 - name: Install packages
@@ -15,7 +15,11 @@
 
 - name: Install package doxygen
   package: name=doxygen state=present
-  
+
+#
+# Prepare tinyb
+#
+
 - name: Check if tinyb is already cloned
   stat: path="{{ ansible_env.HOME }}/tinyb/.git"
   register: tinyb_git_repo
@@ -31,6 +35,10 @@
   
 - name: Create build dir
   file: path={{ tinyb_home }}/build state=directory mode=755
+
+#
+# Compile tinyb
+#  
 
 - name: Compile tinyb
   shell: "cmake .. -DBUILDJAVA=ON -DCMAKE_BUILD_TYPE=DEBUG -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++"
