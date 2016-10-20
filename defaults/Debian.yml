@@ -4,5 +4,6 @@ packages:
 - libglib2.0-dev
 - clang
 - openjdk-8-jdk
+- cmake
 
 tinyb_sha1: 'd9c777bc576b5365c2064d55fe872f272faa92e8'
