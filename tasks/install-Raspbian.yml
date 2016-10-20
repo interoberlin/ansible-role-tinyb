@@ -15,3 +15,16 @@
 
 - name: Install package doxygen
   package: name=doxygen state=present
+  
+- name: Check if tinyb is already cloned
+  stat: path="{{ ansible_env.HOME }}/tinyb/.git"
+  register: tinyb_git_repo
+  
+- Set tiny_home
+  set_fact: tiny_home="{{ ansible_env.HOME }}/tinyb"
+
+- name: Clone tinyb into home directory
+  git: repo=https://github.com/intel-iot-devkit/tinyb.git
+       dest={{ tiny_home }}
+       version={{ tinyb_sha1 }}
+  when: not tinyb_git_repo.stat.exists
