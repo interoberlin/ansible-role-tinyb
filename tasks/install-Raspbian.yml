@@ -8,10 +8,10 @@
   with_items: "{{ packages }}"
 
 - name: Set JAVA_HOME  
-  lineinfile: dest="/root/.bashrc" regexp="^JAVA\_HOME=" line="export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-armhf/jre"
+  lineinfile: dest="/root/.bashrc" regexp="^export JAVA\_HOME=" line="export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-armhf/jre"
 
 - name: Set PATH
-  lineinfile: dest="/root/.bashrc" regexp="^PATH=" line="export PATH=${PATH}:${JAVA_HOME}/bin"
+  lineinfile: dest="/root/.bashrc" regexp="^export PATH=" line="export PATH=${PATH}:${JAVA_HOME}/bin"
 
 - name: Install package doxygen
   package: name=doxygen state=present
