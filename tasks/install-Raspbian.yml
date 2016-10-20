@@ -44,3 +44,8 @@
   shell: "make"
   args:
     chdir: "{{ tiny_home }}/build"
+    
+- name: Make install tinyb
+  shell: "make install"
+  args:
+    chdir: "{{ tiny_home }}/build"
