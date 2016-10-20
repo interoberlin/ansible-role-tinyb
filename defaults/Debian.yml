@@ -3,3 +3,4 @@ packages:
 - libglib3.0-cil-dev
 - libglib2.0-dev
 - clang
+- openjdk-8-jdk
