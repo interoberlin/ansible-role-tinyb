@@ -13,4 +13,5 @@
 - name: Set PATH
   lineinfile: dest="/root/.bashrc" regexp="^PATH=" line="export PATH=${PATH}:${JAVA_HOME}/bin"
 
-
+- name: Install package doxygen
+  package: name=doxygen state=present
