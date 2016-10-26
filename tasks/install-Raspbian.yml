@@ -64,3 +64,6 @@
 
 - name: Install package execstack
   package: name=execstack state=present
+  
+- name: Run execstack
+  shell: "execstack -c /usr/lib/arm-linux-gnueabihf/libjavatinyb.so.*"
