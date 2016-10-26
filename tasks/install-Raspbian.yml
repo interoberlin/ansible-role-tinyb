@@ -57,3 +57,10 @@
   shell: "make install"
   args:
     chdir: "{{ tinyb_home }}/build"
+    
+#
+# Perform post installation tasks
+#
+
+- name: Install package execstack
+  package: name=execstack state=present
