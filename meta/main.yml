@@ -11,7 +11,7 @@ galaxy_info:
     - jessie
   galaxy_tags:
     - ble
-    - bluetooth smart
+    - bluetooth_smart
     - iot
     - java
 dependencies:
