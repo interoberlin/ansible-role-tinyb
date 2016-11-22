@@ -6,9 +6,9 @@ galaxy_info:
   license: GPLv3
   min_ansible_version: 2.0
   platforms:
-  - name: Raspbian
+  - name: Debian
     versions:
-    - 8
+    - jessie
   galaxy_tags:
     - ble
     - bluetooth smart
