@@ -33,7 +33,7 @@ None.
 
     - hosts: all
       roles:
-        - { role: interoberlin.ansible-role-tinyb }
+        - { role: interoberlin.tinyb }
 
 ## License
 
